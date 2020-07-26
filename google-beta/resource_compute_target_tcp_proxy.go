@@ -21,8 +21,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceComputeTargetTcpProxy() *schema.Resource {
@@ -246,8 +246,6 @@ func resourceComputeTargetTcpProxyUpdate(d *schema.ResourceData, meta interface{
 		if err != nil {
 			return err
 		}
-
-		d.SetPartial("proxy_header")
 	}
 	if d.HasChange("backend_service") {
 		obj := make(map[string]interface{})
@@ -274,8 +272,6 @@ func resourceComputeTargetTcpProxyUpdate(d *schema.ResourceData, meta interface{
 		if err != nil {
 			return err
 		}
-
-		d.SetPartial("backend_service")
 	}
 
 	d.Partial(false)
